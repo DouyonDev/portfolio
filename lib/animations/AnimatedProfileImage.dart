@@ -3,8 +3,7 @@ import 'package:portfolio/utils.dart';
 
 class AnimatedProfileImage extends StatefulWidget {
   @override
-  _AnimatedProfileImageState createState() =>
-      _AnimatedProfileImageState();
+  State<AnimatedProfileImage> createState() => _AnimatedProfileImageState();
 }
 
 class _AnimatedProfileImageState extends State<AnimatedProfileImage>
@@ -19,16 +18,21 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
 
     controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1000),
+      duration: const Duration(milliseconds: 1200),
     );
 
-    scale = Tween<double>(begin: 0.8, end: 1).animate(
+    scale = Tween<double>(begin: 0.7, end: 1).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeOutBack),
     );
 
     fade = Tween<double>(begin: 0, end: 1).animate(controller);
-
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -40,27 +44,46 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
         child: Stack(
           alignment: Alignment.center,
           children: [
-
-            /// EFFET GLOW (lumière)
             Container(
-              width: 260,
-              height: 260,
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: AppColors.gradientHero,
+              ),
+            ),
+            Container(
+              width: 280,
+              height: 280,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blue.withOpacity(0.6),
-                    blurRadius: 40,
-                    spreadRadius: 10,
+                    color: AppColors.primary.withValues(alpha: 0.4),
+                    blurRadius: 50,
+                    spreadRadius: 5,
                   ),
                 ],
               ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/profil.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-
-            /// IMAGE PROFIL
-            CircleAvatar(
-              radius: 120,
-              backgroundImage: AssetImage("assets/profil.jpg"),
+            Positioned(
+              bottom: 20,
+              right: 20,
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  color: AppColors.success,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.background, width: 3),
+                ),
+              ),
             ),
           ],
         ),

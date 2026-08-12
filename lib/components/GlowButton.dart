@@ -1,55 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/core/data/portfolio_data.dart';
+import 'package:portfolio/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class GlowButton extends StatefulWidget {
+  const GlowButton({super.key});
+
   @override
-  _GlowButtonState createState() => _GlowButtonState();
+  State<GlowButton> createState() => _GlowButtonState();
 }
 
 class _GlowButtonState extends State<GlowButton>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
+  bool hover = false;
 
   @override
   void initState() {
+    super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     )..repeat(reverse: true);
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) {
-        return Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withOpacity(controller.value),
-                blurRadius: 20,
-                spreadRadius: 2,
-              )
-            ],
-          ),
-          child: ElevatedButton(
-            onPressed: () async {
-              await launchUrl(
-                  Uri.parse("mailto:abdoulayedouyon.ad@gmail.com"));
-            },
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 40, vertical: 18),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
+    return MouseRegion(
+      onEnter: (_) => setState(() => hover = true),
+      onExit: (_) => setState(() => hover = false),
+      child: AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) {
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.primary.withValues(
+                    alpha: 0.2 + controller.value * 0.3,
+                  ),
+                  blurRadius: hover ? 30 : 20,
+                  spreadRadius: hover ? 2 : 0,
+                ),
+              ],
+            ),
+            child: GestureDetector(
+              onTap: () => launchUrl(
+                Uri.parse('mailto:${PortfolioData.email}'),
+              ),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 18,
+                ),
+                decoration: BoxDecoration(
+                  gradient: AppColors.gradientPrimary,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                transform: Matrix4.identity()..scale(hover ? 1.03 : 1.0),
+                child: Text(
+                  'Me contacter maintenant',
+                  style: GoogleFonts.inter(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ),
-            child: Text("Me contacter maintenant"),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

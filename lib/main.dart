@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
-
-import 'CustomCursor.dart';
-import 'pages/main_page.dart';
+import 'package:portfolio/core/theme/app_theme.dart';
+import 'package:portfolio/pages/main_page.dart';
 
 void main() {
-  runApp(MyPortfolio());
+  runApp(const MyPortfolio());
 }
 
-
-/// Application principale
 class MyPortfolio extends StatelessWidget {
+  const MyPortfolio({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      /*builder: (context, child) {
-        return MouseRegion(
-          cursor: SystemMouseCursors.none,
-          child: CustomCursor(child: child!),
-        );
-      },*/
       scrollBehavior: MaterialScrollBehavior().copyWith(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Portfolio Abdoulaye',
-      home: HomePage(),
+      title: 'Portfolio Abdoulaye Douyon',
+      theme: AppTheme.darkTheme,
+      home: const HomePage(),
     );
   }
 }

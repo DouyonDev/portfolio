@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/utils.dart';
 
 class SkillCard extends StatefulWidget {
   final IconData icon;
@@ -7,10 +9,11 @@ class SkillCard extends StatefulWidget {
   final Color color;
 
   const SkillCard({
+    super.key,
     required this.icon,
     required this.title,
     required this.items,
-    this.color = Colors.blue,
+    this.color = AppColors.primary,
   });
 
   @override
@@ -33,22 +36,21 @@ class _SkillCardState extends State<SkillCard> {
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             colors: isHover
-                ? [widget.color.withOpacity(0.4), Colors.black]
-                : [Colors.white.withOpacity(0.05), Colors.black],
+                ? [widget.color.withValues(alpha: 0.25), AppColors.surface]
+                : [AppColors.surfaceLight.withValues(alpha: 0.5), AppColors.surface],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           border: Border.all(
-            color: isHover ? widget.color : Colors.white24,
+            color: isHover ? widget.color : AppColors.cardBorder,
           ),
           boxShadow: isHover
               ? [
-            BoxShadow(
-              color: widget.color.withOpacity(0.6),
-              blurRadius: 25,
-              spreadRadius: 1,
-            )
-          ]
+                  BoxShadow(
+                    color: widget.color.withValues(alpha: 0.3),
+                    blurRadius: 25,
+                  ),
+                ]
               : [],
         ),
 
@@ -67,10 +69,10 @@ class _SkillCardState extends State<SkillCard> {
                 Expanded(
                   child: Text(
                     widget.title,
-                    style: TextStyle(
+                    style: GoogleFonts.inter(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                 ),
@@ -90,7 +92,7 @@ class _SkillCardState extends State<SkillCard> {
                   Expanded(
                     child: Text(
                       e,
-                      style: TextStyle(color: Colors.white70),
+                      style: GoogleFonts.inter(color: AppColors.textSecondary),
                     ),
                   ),
                 ],

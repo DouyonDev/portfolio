@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/utils.dart';
 
 class ContactCard extends StatefulWidget {
   final IconData icon;
@@ -7,7 +9,8 @@ class ContactCard extends StatefulWidget {
   final VoidCallback? onTap;
   final VoidCallback? onCopy;
 
-  ContactCard({
+  const ContactCard({
+    super.key,
     required this.icon,
     required this.title,
     required this.value,
@@ -16,7 +19,7 @@ class ContactCard extends StatefulWidget {
   });
 
   @override
-  _ContactCardState createState() => _ContactCardState();
+  State<ContactCard> createState() => _ContactCardState();
 }
 
 class _ContactCardState extends State<ContactCard> {
@@ -30,58 +33,55 @@ class _ContactCardState extends State<ContactCard> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          width: 260,
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: hover
-                ? Colors.blue.withOpacity(0.2)
-                : Colors.white10,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: hover ? Colors.blue : Colors.white24,
-            ),
-            boxShadow: hover
-                ? [
-              BoxShadow(
-                color: Colors.blue.withOpacity(0.3),
-                blurRadius: 20,
-              )
-            ]
-                : [],
+          duration: const Duration(milliseconds: 300),
+          width: 240,
+          padding: const EdgeInsets.all(24),
+          decoration: AppDecorations.glassCard(
+            borderColor: hover
+                ? AppColors.primary.withValues(alpha: 0.6)
+                : null,
+            glow: hover,
           ),
+          transform: Matrix4.identity()..scale(hover ? 1.03 : 1.0),
           child: Column(
             children: [
-
-              Icon(widget.icon,
-                  size: 30, color: Colors.blueAccent),
-
-              SizedBox(height: 10),
-
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  gradient: AppColors.gradientPrimary,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Icon(widget.icon, size: 24, color: Colors.white),
+              ),
+              const SizedBox(height: 14),
               Text(
                 widget.title,
-                style: TextStyle(
-                  color: Colors.white,
+                style: GoogleFonts.inter(
+                  color: AppColors.textPrimary,
                   fontWeight: FontWeight.bold,
+                  fontSize: 15,
                 ),
               ),
-
-              SizedBox(height: 5),
-
+              const SizedBox(height: 6),
               Text(
                 widget.value,
-                style: TextStyle(color: Colors.white70),
+                style: GoogleFonts.inter(
+                  color: AppColors.textSecondary,
+                  fontSize: 13,
+                ),
                 textAlign: TextAlign.center,
               ),
-
-              /// BOUTON COPIER EMAIL
               if (widget.onCopy != null) ...[
-                SizedBox(height: 10),
-                TextButton(
+                const SizedBox(height: 10),
+                TextButton.icon(
                   onPressed: widget.onCopy,
-                  child: Text("Copier"),
-                )
-              ]
+                  icon: const Icon(Icons.copy, size: 16),
+                  label: const Text('Copier'),
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppColors.primaryLight,
+                  ),
+                ),
+              ],
             ],
           ),
         ),

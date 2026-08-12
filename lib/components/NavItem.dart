@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/utils.dart';
 
 class NavItem extends StatefulWidget {
   final String text;
   final VoidCallback onTap;
 
-  const NavItem(this.text, this.onTap);
+  const NavItem(this.text, this.onTap, {super.key});
 
   @override
   State<NavItem> createState() => _NavItemState();
@@ -21,33 +23,38 @@ class _NavItemState extends State<NavItem> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          margin: EdgeInsets.symmetric(horizontal: 10),
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+          duration: const Duration(milliseconds: 300),
+          margin: const EdgeInsets.symmetric(horizontal: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: isHover ? Colors.white10 : Colors.transparent,
+            borderRadius: BorderRadius.circular(8),
+            color: isHover
+                ? AppColors.primary.withValues(alpha: 0.1)
+                : Colors.transparent,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 widget.text,
-                style: TextStyle(
-                  color: isHover ? Colors.white : Colors.white70,
+                style: GoogleFonts.inter(
+                  color: isHover
+                      ? AppColors.textPrimary
+                      : AppColors.textSecondary,
                   fontWeight: FontWeight.w500,
+                  fontSize: 14,
                 ),
               ),
-
-              SizedBox(height: 5),
-
-              /// 🔥 petite ligne animée
+              const SizedBox(height: 4),
               AnimatedContainer(
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 height: 2,
-                width: isHover ? 20 : 0,
-                color: Colors.blueAccent,
-              )
+                width: isHover ? 24 : 0,
+                decoration: BoxDecoration(
+                  gradient: AppColors.gradientPrimary,
+                  borderRadius: BorderRadius.circular(1),
+                ),
+              ),
             ],
           ),
         ),

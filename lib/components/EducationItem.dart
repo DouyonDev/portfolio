@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/core/data/portfolio_data.dart';
 import 'package:portfolio/utils.dart';
 
-class ExperienceItem extends StatefulWidget {
-  final String title;
-  final String company;
-  final String period;
-  final String description;
-  final IconData icon;
+class EducationItem extends StatefulWidget {
+  final EducationEntry entry;
+  final bool isLast;
 
-  const ExperienceItem({
+  const EducationItem({
     super.key,
-    required this.title,
-    required this.company,
-    required this.period,
-    required this.description,
-    required this.icon,
+    required this.entry,
+    this.isLast = false,
   });
 
   @override
-  State<ExperienceItem> createState() => _ExperienceItemState();
+  State<EducationItem> createState() => _EducationItemState();
 }
 
-class _ExperienceItemState extends State<ExperienceItem> {
+class _EducationItemState extends State<EducationItem> {
   bool hover = false;
 
   @override
@@ -40,44 +35,45 @@ class _ExperienceItemState extends State<ExperienceItem> {
               children: [
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  width: 16,
-                  height: 16,
+                  width: 44,
+                  height: 44,
                   decoration: BoxDecoration(
                     gradient: hover ? AppColors.gradientPrimary : null,
-                    color: hover ? null : AppColors.primaryLight,
+                    color: hover ? null : AppColors.surfaceLight,
                     shape: BoxShape.circle,
-                    boxShadow: hover
-                        ? [
-                            BoxShadow(
-                              color: AppColors.primary.withValues(alpha: 0.5),
-                              blurRadius: 10,
-                            ),
-                          ]
-                        : [],
-                  ),
-                ),
-                Container(
-                  width: 2,
-                  height: 100,
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        AppColors.primary.withValues(alpha: 0.4),
-                        AppColors.cardBorder.withValues(alpha: 0.1),
-                      ],
+                    border: Border.all(
+                      color: hover ? AppColors.primary : AppColors.cardBorder,
                     ),
                   ),
+                  child: Icon(
+                    widget.entry.icon,
+                    color: hover ? Colors.white : AppColors.primaryLight,
+                    size: 20,
+                  ),
                 ),
+                if (!widget.isLast)
+                  Container(
+                    width: 2,
+                    height: 80,
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          AppColors.primary.withValues(alpha: 0.5),
+                          AppColors.cardBorder.withValues(alpha: 0.2),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
             const SizedBox(width: 20),
             Expanded(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.all(22),
+                padding: const EdgeInsets.all(20),
                 decoration: AppDecorations.glassCard(
                   borderColor: hover
                       ? AppColors.primary.withValues(alpha: 0.6)
@@ -89,22 +85,9 @@ class _ExperienceItemState extends State<ExperienceItem> {
                   children: [
                     Row(
                       children: [
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Icon(
-                            widget.icon,
-                            color: AppColors.primaryLight,
-                            size: 20,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
                         Expanded(
                           child: Text(
-                            widget.title,
+                            widget.entry.title,
                             style: GoogleFonts.inter(
                               color: AppColors.textPrimary,
                               fontSize: 17,
@@ -114,37 +97,30 @@ class _ExperienceItemState extends State<ExperienceItem> {
                         ),
                         Container(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
+                            horizontal: 12,
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.surfaceLight,
-                            borderRadius: BorderRadius.circular(12),
+                            color: AppColors.primary.withValues(alpha: 0.15),
+                            borderRadius: BorderRadius.circular(20),
                           ),
                           child: Text(
-                            widget.period,
+                            widget.entry.period,
                             style: GoogleFonts.inter(
-                              color: AppColors.textSecondary,
+                              color: AppColors.primaryLight,
                               fontSize: 12,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 6),
                     Text(
-                      widget.company,
+                      widget.entry.institution,
                       style: GoogleFonts.inter(
                         color: AppColors.secondary,
                         fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      widget.description,
-                      style: GoogleFonts.inter(
-                        color: AppColors.textSecondary,
-                        height: 1.5,
                       ),
                     ),
                   ],

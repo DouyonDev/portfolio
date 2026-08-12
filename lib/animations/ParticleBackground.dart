@@ -3,26 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/utils.dart';
 
 class ParticleBackground extends StatefulWidget {
+  const ParticleBackground({super.key});
+
   @override
-  _ParticleBackgroundState createState() => _ParticleBackgroundState();
+  State<ParticleBackground> createState() => _ParticleBackgroundState();
 }
 
 class _ParticleBackgroundState extends State<ParticleBackground>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
-  List<Particle> particles = [];
+  late List<Particle> particles;
 
   @override
   void initState() {
     super.initState();
-
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 20),
+      duration: const Duration(seconds: 20),
     )..repeat();
+    particles = List.generate(50, (_) => Particle());
+  }
 
-    // Générer les particules
-    particles = List.generate(40, (index) => Particle());
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -42,7 +47,13 @@ class _ParticleBackgroundState extends State<ParticleBackground>
 class Particle {
   double x = Random().nextDouble();
   double y = Random().nextDouble();
-  double speed = Random().nextDouble() * 0.002;
+  double speed = Random().nextDouble() * 0.0015 + 0.0005;
+  double size = Random().nextDouble() * 2 + 1;
+  Color color = [
+    AppColors.primary,
+    AppColors.secondary,
+    AppColors.primaryLight,
+  ][Random().nextInt(3)];
 }
 
 class ParticlePainter extends CustomPainter {
@@ -52,15 +63,17 @@ class ParticlePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = Colors.white.withOpacity(0.2);
-
     for (var p in particles) {
       p.y -= p.speed;
       if (p.y < 0) p.y = 1;
 
+      final paint = Paint()
+        ..color = p.color.withValues(alpha: 0.15)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1);
+
       canvas.drawCircle(
         Offset(p.x * size.width, p.y * size.height),
-        2,
+        p.size,
         paint,
       );
     }
