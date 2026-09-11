@@ -14,19 +14,18 @@ final skillList = [
     'HTML / CSS / JavaScript',
     'Conception de sites web',
     'Responsive Design',
-    'Access & MySQL',
+    'Framework (Angular, React)',
   ], const Color(0xFF6366F1)),
   SkillModel(Icons.phone_android, 'Développement Mobile', [
     'Flutter & Dart',
-    'Firebase',
     'UI/UX moderne',
     'Applications cross-platform',
   ], const Color(0xFF06B6D4)),
-  SkillModel(Icons.dns, 'Backend & Données', [
+  SkillModel(Icons.dns, 'Backend & Base de Données', [
     'Java (Spring Boot)',
-    'MySQL & Firebase',
+    'Firebase',
     'API REST',
-    'Gestion de bases de données',
+    'Access & MySQL',
   ], const Color(0xFF8B5CF6)),
   SkillModel(Icons.computer, 'Systèmes & Réseaux', [
     'Maintenance informatique',

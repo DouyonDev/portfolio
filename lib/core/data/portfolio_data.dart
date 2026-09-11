@@ -74,29 +74,34 @@ class TechSkill {
 
 class PortfolioData {
   static const name = 'Abdoulaye Douyon';
-  static const title = 'Développeur Full-Stack & Informaticien';
+  static const title = 'Informaticien - Développeur Full-Stack';
   static const subtitle =
-      'Étudiant passionné spécialisé en développement web et mobile, '
-      'avec une solide formation en sciences biologiques.';
+      'Professionnel spécialisé en développement web et mobile, '
+      'avec une solide formation en Electronique maintenance informatique.';
   static const email = 'abdoulayedouyon.ad@gmail.com';
   static const phone = '+223 92 25 70 11';
   static const linkedIn = 'linkedin.com/in/abdoulaye-douyon-5039b0306';
   static const github = 'github.com/DouyonDev';
-  static const cvUrl = 'https://douyondev.github.io/projetCV/';
+  static const cvUrl = 'cv.html';
 
   static const aboutParagraphs = [
-    'Passionné par l\'informatique et les solutions numériques, je suis un professionnel '
-        'évoluant dans la fonction publique avec une solide expérience en maintenance '
-        'informatique, déploiement de systèmes et développement d\'applications.',
-    'Étudiant passionné spécialisé en développement web et mobile, avec une solide '
-        'formation en sciences biologiques. Je suis déterminé à appliquer mes compétences '
-        'en développement logiciel pour créer des solutions innovantes dans le domaine '
-        'de la biologie et de la santé.',
-    'Aujourd\'hui, je développe des applications modernes avec Flutter et Firebase '
-        'pour répondre aux besoins des entreprises locales, notamment dans la gestion '
-        'des activités, des ventes et des données.',
-    'Mon objectif est de proposer des solutions simples, efficaces et adaptées '
-        'aux réalités du terrain.',
+    'Passionné par l’informatique et les solutions numériques, je suis un professionnel '
+        'orienté vers le développement d’applications, la maintenance informatique et '
+        'la mise en place de solutions adaptées aux besoins des organisations.',
+
+    'Mon parcours m’a permis de développer une double compétence en informatique et '
+        'dans les sciences biologiques. Cette polyvalence nourrit ma curiosité et me '
+        'permet d’aborder les problématiques avec une approche à la fois technique, '
+        'analytique et orientée vers la recherche de solutions.',
+
+    'Aujourd’hui, je conçois des applications modernes, '
+        'tout en travaillant sur des solutions de gestion, de suivi des activités, '
+        'des ventes et des données. Je m’intéresse particulièrement aux outils '
+        'qui permettent de simplifier les tâches et d’améliorer la productivité.',
+
+    'Mon ambition est de transformer les besoins du terrain en solutions numériques '
+        'simples, fiables et efficaces, en mettant la technologie au service des '
+        'utilisateurs et des organisations.',
   ];
 
   static const stats = [
@@ -109,25 +114,25 @@ class PortfolioData {
   static const education = [
     EducationEntry(
       title: 'Développeur Full-Stack — ODK',
-      institution: 'Formation en cours',
-      period: '2024 — Aujourd\'hui',
+      institution: 'Orange Digital Center - Kalanso',
+      period: '26 Février2024 — 07 Novembre 2024',
       icon: Icons.school,
     ),
     EducationEntry(
       title: 'Licence Génie Biologique',
       institution: 'Institut des Sciences Appliquées',
-      period: '2024',
+      period: '2019 — 2023',
       icon: Icons.biotech,
     ),
     EducationEntry(
-      title: 'DUT Électronique & Maintenance Informatique',
+      title: 'Électronique & Maintenance Informatique',
       institution: 'TecnoLab-ISTA',
       period: '2021 — 2023',
       icon: Icons.memory,
     ),
     EducationEntry(
       title: 'Baccalauréat Malien — Sciences Expérimentales',
-      institution: 'Terminale',
+      institution: 'Lycée Mamadou M\'Bodj de Sébénikoro',
       period: '2014 — 2017',
       icon: Icons.menu_book,
     ),
@@ -136,8 +141,8 @@ class PortfolioData {
   static const experiences = [
     ExperienceEntry(
       title: 'Technicien Informatique',
-      company: 'Fonction Publique — Ministère de la Défense',
-      period: '2023 — Aujourd\'hui',
+      company: 'Structure Gouvernementale',
+      period: '2025 — Aujourd\'hui',
       description:
           'Maintenance du parc informatique, support technique quotidien et déploiement de solutions numériques.',
       icon: Icons.computer,
@@ -153,13 +158,13 @@ class PortfolioData {
     ExperienceEntry(
       title: 'Stage Bio-Médical',
       company: 'Hôpital du Point-G',
-      period: 'Août — Sept. 2023',
+      period: 'Juillet — Sept. 2023',
       description:
-          'Immersion hospitalière en environnement bio-médical, observation des processus de santé et gestion de données.',
+          'Immersion hospitalière en environnement bio-médical, réalisation des analyses bio-chimiques et biologiques.',
       icon: Icons.local_hospital,
     ),
     ExperienceEntry(
-      title: 'Déploiement SIGPD',
+      title: 'Déploiement de solution numérique',
       company: 'Projet National',
       period: 'Mission',
       description:
@@ -177,7 +182,7 @@ class PortfolioData {
     ExperienceEntry(
       title: 'Conception de sites web',
       company: 'Projets académiques & freelance',
-      period: 'Depuis 2021',
+      period: '2022 — Aujourd\'hui',
       description:
           'Conception et développement de sites web, cartes d\'identité visuelle et supports numériques pour divers établissements.',
       icon: Icons.web,
@@ -185,7 +190,7 @@ class PortfolioData {
     ExperienceEntry(
       title: 'Réparation d\'ordinateurs',
       company: 'Services indépendants',
-      period: 'Depuis 2021',
+      period: '2022 — Aujourd\'hui',
       description:
           'Diagnostic, réparation et maintenance de matériel informatique pour particuliers et institutions.',
       icon: Icons.build,
@@ -208,40 +213,80 @@ class PortfolioData {
       image: 'assets/projects/school.png',
     ),
     ProjectEntry(
-      title: 'Déploiement SIGPD',
+      title: 'Déploiement de SI',
       description:
-          'Installation, configuration et support technique du système SIGPD dans plusieurs services.',
+          'Installation, configuration et support technique du système SI dans plusieurs services.',
       tech: ['Réseau', 'Maintenance', 'Support'],
       image: 'assets/projects/system.png',
     ),
   ];
 
   static const techSkills = [
-    TechSkill(name: 'HTML', level: 0.90, color: Color(0xFFE34F26), icon: Icons.code),
-    TechSkill(name: 'CSS', level: 0.85, color: Color(0xFF1572B6), icon: Icons.palette),
-    TechSkill(name: 'JavaScript', level: 0.80, color: Color(0xFFF7DF1E), icon: Icons.javascript),
-    TechSkill(name: 'Flutter', level: 0.85, color: Color(0xFF02569B), icon: Icons.phone_android),
-    TechSkill(name: 'MySQL', level: 0.75, color: Color(0xFF4479A1), icon: Icons.storage),
-    TechSkill(name: 'Firebase', level: 0.80, color: Color(0xFFFFCA28), icon: Icons.cloud),
-    TechSkill(name: 'Java', level: 0.70, color: Color(0xFFED8B00), icon: Icons.coffee),
-    TechSkill(name: 'Access', level: 0.75, color: Color(0xFFA4373A), icon: Icons.table_chart),
+    TechSkill(
+      name: 'HTML',
+      level: 0.90,
+      color: Color(0xFFE34F26),
+      icon: Icons.code,
+    ),
+    TechSkill(
+      name: 'CSS',
+      level: 0.75,
+      color: Color(0xFF1572B6),
+      icon: Icons.palette,
+    ),
+    TechSkill(
+      name: 'JavaScript',
+      level: 0.80,
+      color: Color(0xFFF7DF1E),
+      icon: Icons.javascript,
+    ),
+    TechSkill(
+      name: 'Flutter',
+      level: 0.85,
+      color: Color(0xFF02569B),
+      icon: Icons.phone_android,
+    ),
+    TechSkill(
+      name: 'MySQL',
+      level: 0.70,
+      color: Color(0xFF4479A1),
+      icon: Icons.storage,
+    ),
+    TechSkill(
+      name: 'Firebase',
+      level: 0.80,
+      color: Color(0xFFFFCA28),
+      icon: Icons.cloud,
+    ),
+    TechSkill(
+      name: 'Java (Spring Boot)',
+      level: 0.70,
+      color: Color(0xFFED8B00),
+      icon: Icons.coffee,
+    ),
+    TechSkill(
+      name: 'Access',
+      level: 0.75,
+      color: Color(0xFFA4373A),
+      icon: Icons.table_chart,
+    ),
   ];
 
   static const interests = [
     InterestEntry(
       icon: Icons.sports_soccer,
-      label: 'Sport',
-      subtitle: 'Développement Logiciel',
+      label: 'Séries',
+      subtitle: 'Technologie & Innovation',
     ),
     InterestEntry(
       icon: Icons.music_note,
       label: 'Musique',
-      subtitle: 'Technologie & Innovation',
+      subtitle: 'Plaisir & Relaxation',
     ),
     InterestEntry(
       icon: Icons.biotech,
       label: 'Sciences Biologiques',
-      subtitle: 'Code & Innovation',
+      subtitle: 'Santé & Bien-être',
     ),
   ];
 }

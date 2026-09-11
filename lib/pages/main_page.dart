@@ -428,7 +428,7 @@ class _EducationSection extends StatelessWidget {
             children: [
               const PremiumSectionTitle(
                 title: 'Parcours',
-                subtitle: 'Formation et certifications',
+                subtitle: 'Formations et certifications',
               ),
               const SizedBox(height: 40),
               ...PortfolioData.education.asMap().entries.map(
