@@ -3,7 +3,7 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches:
-      - main # Déclenche le déploiement lors d'un push sur la branche main
+      - main
 
 permissions:
   contents: write
@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4 # Version v4 mise à jour
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -30,12 +30,12 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Remplacez "NOM_DE_VOTRE_DEPOT" par le nom exact de votre dépôt GitHub
+      # N'oubliez pas de remplacer "NOM_DE_VOTRE_DEPOT" par le vrai nom
       - name: Build Flutter Web
         run: flutter build web --release --base-href "/portfolio/"
 
       - name: Deploy to GitHub Pages
         uses: BluefireTeam/flutter-gh-pages@v8
         with:
-          target_branch: gh-pages
-          build_dir: build/web
+          targetBranch: gh-pages   # Changement ici (camelCase)
+          workingDir: build/web    # Utilisation du paramètre correct workingDir au lieu de build_dir
