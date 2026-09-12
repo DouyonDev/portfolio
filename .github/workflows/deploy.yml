@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Java
-        uses: actions/setup-java@v4 # Version v4 mise à jour
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -30,12 +30,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # N'oubliez pas de remplacer "NOM_DE_VOTRE_DEPOT" par le vrai nom
-      - name: Build Flutter Web
-        run: flutter build web --release --base-href "/portfolio/"
+      # L'étape "flutter build" manuelle a été supprimée d'ici.
+      # C'est l'action ci-dessous qui va s'en charger proprement.
 
       - name: Deploy to GitHub Pages
-        uses: BluefireTeam/flutter-gh-pages@v8
+        uses: BluefireTeam/flutter-gh-pages@v9  # Passage à la V9 qui supprime l'erreur de renderer
         with:
-          targetBranch: gh-pages   # Changement ici (camelCase)
-          workingDir: build/web    # Utilisation du paramètre correct workingDir au lieu de build_dir
+          targetBranch: gh-pages
+          baseHref: /portfolio/       # Remplacez par le nom de votre dépôt GitHub
